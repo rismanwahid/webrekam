@@ -16,7 +16,7 @@
     <i class="fa fa-folder-o"></i> Pelanggan
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Beranda</a></li>
+    <li><a href="admin.php?page=dashboard"><i class="fa fa-dashboard"></i> Beranda</a></li>
     <li class="active">Pelanggan</li>
   </ol>
 </section>
@@ -31,7 +31,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <a href="admin.php?page=tambahpelanggan" class="btn btn-info"><i class="fa fa-plus"></i> Tambah</a> <br> <br>
+          <!-- <a href="admin.php?page=tambahpelanggan" class="btn btn-info"><i class="fa fa-plus"></i> Tambah</a> <br> <br> -->
           <table id="example1" class="table table-bordered table-hover">
             <thead>
             <tr>

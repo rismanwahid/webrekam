@@ -16,7 +16,7 @@
     <i class="fa fa-folder-o"></i> Petugas
   </h1>
   <ol class="breadcrumb">
-    <li><a href="admin.php"><i class="fa fa-dashboard"></i> Beranda</a></li>
+    <li><a href="admin.php?page=dashboard"><i class="fa fa-dashboard"></i> Beranda</a></li>
     <li class="active">Petugas</li>
   </ol>
 </section>

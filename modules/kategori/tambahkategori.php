@@ -1,12 +1,12 @@
 <?php
-  if (isset($_POST['simpan'])) {
-    $kd_kategori  = $_POST['kd_kategori'];
-    $nama_kategori  = $_POST['nama_kategori'];
+  if (isset($_GET['simpan'])) {
+    $kd_kategori  = $_GET['kd_kategori'];
+    $nama_kategori  = $_GET['nama_kategori'];
 
     mysqli_query($db, "INSERT INTO kategori(kd_kategori,nama_kategori) VALUES ('$kd_kategori','$nama_kategori')");
 
     echo "<script>alert('Data Berhasil Tersimpan')</script>";
-    echo "<script>window.location='admin.php?page=kategori'</script>";
+    echo "<script>window.print()='admin.php?page=kategori'</script>";
 
 
   }

@@ -45,7 +45,7 @@
 
     <form method="post">
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Username" name="username">
+        <input type="text" class="form-control" placeholder="Username" name="username" autocomplete="off">
         <span class="glyphicon glyphicon-user form-control-feedback" ></span>
       </div>
 

@@ -3,7 +3,7 @@
     <i class="fa fa-folder-o"></i> Manajemen User
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Beranda</a></li>
+    <li><a href="admin.php?page=dashboard"><i class="fa fa-dashboard"></i> Beranda</a></li>
     <li class="active">Manajemen User</li>
   </ol>
 </section>
@@ -17,16 +17,15 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <a href="admin.php?page=tambahpelanggan" class="btn btn-info"><i class="fa fa-plus"></i> Tambah</a> <br> <br>
+          <!-- <a href="admin.php?page=tambahpetugas" class="btn btn-info"><i class="fa fa-plus"></i> Tambah</a> <br> <br> -->
           <table id="example1" class="table table-bordered table-hover">
             <thead>
             <tr>
               <th>No</th>
-              <th>Username</th>
-              <th>Nama Lengkap</th>
-              <th>Password</th>
+              <th>UserName</th>
               <th>Level</th>
               <th>Status</th>
+              <th>Aksi</th>
             </tr>
             </thead>
             <tbody>
@@ -40,9 +39,7 @@
                ?>
             <tr>
               <td><?php echo $no; ?></td>
-              <td><?php echo $pecah ['id_user']; ?></td>
               <td><?php echo $pecah ['username']; ?></td>
-              <td><?php echo $pecah ['password']; ?></td>
               <td><?php echo $pecah['level'] ?></td>
               <td><?php echo $pecah ['status']; ?></td>
               <td>

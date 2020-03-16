@@ -28,6 +28,48 @@
     $hasil_rupiah="Rp.".number_format($angka,0,'.','.');
     return $hasil_rupiah;
   }
+
+  function hari_ini(){
+  $hari = date ("D");
+ 
+  switch($hari){
+    case 'Sun':
+      $hari_ini = "Minggu";
+    break;
+ 
+    case 'Mon':     
+      $hari_ini = "Senin";
+    break;
+ 
+    case 'Tue':
+      $hari_ini = "Selasa";
+    break;
+ 
+    case 'Wed':
+      $hari_ini = "Rabu";
+    break;
+ 
+    case 'Thu':
+      $hari_ini = "Kamis";
+    break;
+ 
+    case 'Fri':
+      $hari_ini = "Jumat";
+    break;
+ 
+    case 'Sat':
+      $hari_ini = "Sabtu";
+    break;
+    
+    default:
+      $hari_ini = "Tidak di ketahui";   
+    break;
+  }
+ 
+  return $hari_ini;
+ 
+}
+
  ?>
 
 
@@ -106,24 +148,24 @@
               </li>
               <!-- Menu Body -->
 
-              <li class="user-body">
+              <!-- <li class="user-body">
                 <div class="row">
 
-                </div>
+                </div> -->
                 <!-- /.row -->
-              </li>
+              <!-- </li> -->
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
+                <!-- <div class="pull-left">
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
+                </div> -->
                 <div class="pull-right">
-                  <a href="admin.php?aksi=logout" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="admin.php?aksi=logout" class="btn btn-default btn-flat">Logout</a>
                 </div>
               </li>
             </ul>
           </li>
-          <!-- Control Sidebar Toggle Button -->
+
         </ul>
       </div>
     </nav>
@@ -210,9 +252,21 @@
         else if ($_GET['page'] == 'user') {
           include 'modules/user/index.php';
         }
-
-
-
+        else if ($_GET['page'] == 'laporanpenyewaan') {
+          include 'modules/laporan/laporanpenyewaan.php';
+        }
+        else if ($_GET['page'] == 'laporan') {
+          include 'modules/laporan/index.php';
+        }
+        else if ($_GET['page'] == 'laporanpenyewaan') {
+          include 'modules/laporan/laporanpenyewaan.php';
+        }
+        else if ($_GET['page'] == 'lappengembalian') {
+          include 'modules/lappengembalian/index.php';
+        }
+        else if ($_GET['page'] == 'laporanbarang') {
+          include 'modules/laporan/penyewaanbarang.php';
+        }
 
         else if ($_GET['page'] == 'dashboard'){
           include 'modules/beranda/index.php';
@@ -231,7 +285,10 @@
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
     </div>
-    <strong>Rekam Indonesia &copy; 2019
+    <?php
+
+    ?>
+      <strong><?php echo "Copyright © " . (int)date('Y') . " Rekam Indonesia"; ?></strong>
   </footer>
 
   <!-- Control Sidebar -->
@@ -245,6 +302,12 @@
 
 <!-- jQuery 3 -->
 <script src="aset/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="aset/bower_components/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
 <!-- Bootstrap 3.3.7 -->
 <script src="aset/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- SlimScroll -->
@@ -253,6 +316,8 @@
 <script src="aset/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="aset/dist/js/adminlte.min.js"></script>
+<!-- ChartJS -->
+<script src="aset/bower_components/chart.js/Chart.js"></script>
 <!-- DataTables -->
 <script src="aset/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="aset/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
@@ -296,6 +361,87 @@
 
 
   });
+
+</script>
+
+<script type="text/javascript">
+$(function () {
+  <?php
+    $query = mysqli_query($db,"SELECT barang.nama_barang,SUM(det_sewa.jumlah) AS jumlah FROM det_sewa JOIN barang ON det_sewa.kd_barang = barang.kd_barang GROUP BY det_sewa.kd_barang");
+    $query1 = mysqli_query($db,"SELECT barang.nama_barang,SUM(det_sewa.jumlah) AS jumlah FROM det_sewa JOIN barang ON det_sewa.kd_barang = barang.kd_barang GROUP BY det_sewa.kd_barang");
+   ?>
+  var barChartData = {
+    labels  : [<?php
+                while ($pecah = mysqli_fetch_assoc($query)) {
+                  echo " '".$pecah['nama_barang']."',";
+                }
+                ?>],
+    datasets: [
+      {
+        label               : 'Electronics',
+        fillColor           : 'rgba(210, 214, 222, 1)',
+        strokeColor         : 'rgba(210, 214, 222, 1)',
+        pointColor          : 'rgba(210, 214, 222, 1)',
+        pointStrokeColor    : '#c1c7d1',
+        pointHighlightFill  : '#fff',
+        pointHighlightStroke: 'rgba(220,220,220,1)',
+        data                : [<?php
+                                while ($pecah1 = mysqli_fetch_assoc($query1)) {
+                                  echo " ".$pecah1['jumlah'].",";
+                                }
+                    ?>]
+      }
+      // ,
+      // {
+      //   label               : 'Digital Goods',
+      //   fillColor           : 'rgba(60,141,188,0.9)',
+      //   strokeColor         : 'rgba(60,141,188,0.8)',
+      //   pointColor          : '#3b8bba',
+      //   pointStrokeColor    : 'rgba(60,141,188,1)',
+      //   pointHighlightFill  : '#fff',
+      //   pointHighlightStroke: 'rgba(60,141,188,1)',
+      //   data                : [28, 48, 40, 19, 86, 27, 90]
+      // }
+    ]
+  }
+var barChartCanvas                   = $('#barChart').get(0).getContext('2d')
+var barChart                         = new Chart(barChartCanvas)
+//var barChartData                     = areaChartData
+barChartData.datasets[0].fillColor   = '#00a65a'
+barChartData.datasets[0].strokeColor = '#00a65a'
+barChartData.datasets[0].pointColor  = '#00a65a'
+var barChartOptions                  = {
+  //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+  scaleBeginAtZero        : true,
+  //Boolean - Whether grid lines are shown across the chart
+  scaleShowGridLines      : true,
+  //String - Colour of the grid lines
+  scaleGridLineColor      : 'rgba(0,0,0,.05)',
+  //Number - Width of the grid lines
+  scaleGridLineWidth      : 1,
+  //Boolean - Whether to show horizontal lines (except X axis)
+  scaleShowHorizontalLines: true,
+  //Boolean - Whether to show vertical lines (except Y axis)
+  scaleShowVerticalLines  : true,
+  //Boolean - If there is a stroke on each bar
+  barShowStroke           : true,
+  //Number - Pixel width of the bar stroke
+  barStrokeWidth          : 2,
+  //Number - Spacing between each of the X value sets
+  barValueSpacing         : 5,
+  //Number - Spacing between data sets within X values
+  barDatasetSpacing       : 1,
+  //String - A legend template
+  legendTemplate          : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].fillColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
+  //Boolean - whether to make the chart responsive
+  responsive              : true,
+  maintainAspectRatio     : true
+
+}
+
+barChartOptions.datasetFill = false
+barChart.Bar(barChartData, barChartOptions)
+})
 
 </script>
 

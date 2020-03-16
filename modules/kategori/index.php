@@ -17,7 +17,7 @@
     <i class="fa fa-folder-o"></i> Kategori
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Beranda</a></li>
+    <li><a href="admin.php?page=dashboard"><i class="fa fa-dashboard"></i> Beranda</a></li>
     <li class="active">Kategori</li>
   </ol>
 </section>

@@ -11,21 +11,22 @@
 			$total			= $_POST['total'];
 			$_SESSION['sstotal'] = $total;
 			$jam_s			= $_POST['jam_sewa'];
+			$tglkembali = $_SESSION['sstanggalmax']." ".$jam_s.":00";
 
 			date_default_timezone_set('Asia/Jakarta');
 			$tgl_sekarang 		= date("Y-m-d H:i:s");
 			$tgl_pinjam				= $tgl_sewa." ".$jam_s.":00";
 
 
-			if ($lama_sewa == '0.5') {
-			$tambah = '12 HOUR';
-			}else {
-			$tambah = $lama_sewa." DAY";
-			}
+			// if ($lama_sewa == '0.5') {
+			// $tambah = '12 HOUR';
+			// }else {
+			// $tambah = $lama_sewa." DAY";
+			// }
 
 
 
-			mysqli_query($db, "INSERT INTO sewa(id_sewa,tgl_transaksi,id_pelanggan,tgl_pinjam,tgl_kembali,jaminan,total,lama) VALUES ('$id_sewa','$tgl_sekarang','$id_user','$tgl_pinjam',DATE_ADD('$tgl_pinjam', INTERVAL $tambah ),'$jaminan','$total','$lama_sewa')");
+			mysqli_query($db, "INSERT INTO sewa(id_sewa,tgl_transaksi,id_pelanggan,tgl_pinjam,tgl_kembali,jaminan,total,lama) VALUES ('$id_sewa','$tgl_sekarang','$id_user','$tgl_pinjam','$tglkembali','$jaminan','$total','$lama_sewa')");
 
 
 			mysqli_query($db, "INSERT INTO det_sewa(id_det_sewa,id_sewa,kd_barang,jumlah,lama) SELECT id_det_sewa,id_sewa,kd_barang,jumlah,lama FROM tmp_detsewa WHERE id_sewa = '$id_sewa'");
@@ -52,7 +53,7 @@
 
 			<div class="span9">
 			<table class="table table-bordered" >
-			<tr><th> List Pemesanan  </th></tr>
+			<tr><th> List Pemesanan</th><b><p>Jam Operasional 13:00 - 21:00</p></b></tr>
 			<tr>
 			<td>
 				<form class="form-horizontal" method="post">
@@ -70,64 +71,56 @@
 						<div class="span3">
 							<div class="control-group">
 						<div class="controls">
-							<label>Lama Sewa </label>
-							<select name="lamasewa" id="lamasewa">
+							<label>Lama /hari </label>
+							<input type="text" name="lamasewa" value="<?php echo $_SESSION['sslamasewa']; ?>" readonly>
 								<?php
-									if ($_SESSION['lamasewass']=='0.5') {
-										$waktu = 'selected';
-									}else{
-										$waktu='';
-									}
-
-									if ($_SESSION['lamasewass']=='1') {
-										$waktu1 = 'selected';
-									}else{
-										$waktu1='';
-									}
-
-									if ($_SESSION['lamasewass']=='2') {
-										$waktu2 = 'selected';
-									}else{
-										$waktu2='';
-									}
-
-									if ($_SESSION['lamasewass']=='3') {
-										$waktu3 = 'selected';
-									}else{
-										$waktu3='';
-									}
-									if ($_SESSION['lamasewass']=='4') {
-										$waktu4 = 'selected';
-									}else{
-										$waktu4='';
-									}
-									if ($_SESSION['lamasewass']=='5') {
-										$waktu5 = 'selected';
-									}else{
-										$waktu5='';
-									}
-									if ($_SESSION['lamasewass']=='6') {
-										$waktu6 = 'selected';
-									}else{
-										$waktu6='';
-									}
-									if ($_SESSION['lamasewass']=='7') {
-										$waktu7 = 'selected';
-									}else{
-										$waktu7='';
-									}
+									// if ($_SESSION['lamasewass']=='0.5') {
+									// 	$waktu = 'selected';
+									// }else{
+									// 	$waktu='';
+									// }
+									//
+									// if ($_SESSION['lamasewass']=='1') {
+									// 	$waktu1 = 'selected';
+									// }else{
+									// 	$waktu1='';
+									// }
+									//
+									// if ($_SESSION['lamasewass']=='2') {
+									// 	$waktu2 = 'selected';
+									// }else{
+									// 	$waktu2='';
+									// }
+									//
+									// if ($_SESSION['lamasewass']=='3') {
+									// 	$waktu3 = 'selected';
+									// }else{
+									// 	$waktu3='';
+									// }
+									// if ($_SESSION['lamasewass']=='4') {
+									// 	$waktu4 = 'selected';
+									// }else{
+									// 	$waktu4='';
+									// }
+									// if ($_SESSION['lamasewass']=='5') {
+									// 	$waktu5 = 'selected';
+									// }else{
+									// 	$waktu5='';
+									// }
+									// if ($_SESSION['lamasewass']=='6') {
+									// 	$waktu6 = 'selected';
+									// }else{
+									// 	$waktu6='';
+									// }
+									// if ($_SESSION['lamasewass']=='7') {
+									// 	$waktu7 = 'selected';
+									// }else{
+									// 	$waktu7='';
+									// }
 
 								 ?>
-								<option value="">--pilih lama sewa--</option>
-								<option class="class-x"  value="0.5" <?php echo $waktu; ?>>12jam</option>
-								<option class="class-x"  value="1" <?php echo $waktu1; ?>>1 Hari</option>
-								<option class="class-x"  value="2" <?php echo $waktu2; ?>>2 Hari</option>
-								<option class="class-x"  value="3" <?php echo $waktu3; ?>>3 Hari</option>
-								<option class="class-x"  value="4" <?php echo $waktu4; ?>>4 Hari</option>
-								<option class="class-x"  value="5" <?php echo $waktu5; ?>>5 Hari</option>
-								<option class="class-x"  value="6" <?php echo $waktu6; ?>>6 Hari</option>
-								<option class="class-x"  value="7" <?php echo $waktu7; ?>>1 Minggu</option>
-							</select>
+
+
 						</div>
 							</div>
 						</div>
@@ -144,7 +137,7 @@
 							<div class="control-group">
 							  <div class="controls">
 								<label>Tanggal Sewa</label>
-								<input type="date" name="tgl_sewa">
+								<input type="date" name="tgl_sewa" value="<?php echo $_SESSION['sstanggalcari']; ?>" readonly>
 							  </div>
 							</div>
 						</div>
@@ -174,15 +167,8 @@
 							</div>
 						</div>
 
-
-
-
-
-
-
 			</td>
 			</tr>
-
 			</table>
 
 			<table class="table table-bordered">
@@ -228,7 +214,9 @@
 			  <td>
 			    <?php echo rupiah($pecah['Total']) ?>
 			  </td>
-				<td><a onclick="return confirm('Anda Yakin Ingin Menghapus?')" class="btn btn-xs btn-danger" href="index.php?page=listpemesanan&aksi=hapus&id_sewa=<?php echo $_SESSION['ss_sewa']; ?>"><i class="fa fa-trash"></i> Batal</a></td>
+				<td>
+					<a class="btn btn-xs btn-danger" href="index.php?page=listpemesanan&aksi=hapus&id_sewa=<?php echo $_SESSION['ss_sewa']; ?>&kd_barang=<?php echo $pecah['kd_barang']; ?>"><i class="fa fa-trash"></i> Batal</a>
+				</td>
 			<tr>
 
 
@@ -258,7 +246,7 @@
 			<button type="submit" name="bayar" class="btn btn-large btn-success pull-right">Bayar <i class="icon-arrow-right">    </i></button>
 			</form>
 			</div>
-			<script type="text/javascript">
+			<!-- <script type="text/javascript">
 
 			$(document).ready(function()  {
 			$('#lamasewa').change(function(e){
@@ -284,17 +272,17 @@
 			});
 
 			});
-			</script>
+			</script> -->
 
 			<?php
 
 			  if (isset($_GET ['aksi'])) {
 			    if ($_GET ['aksi'] == 'hapus') {
-			      $id_sewa1 = $_SESSION['ss_sewa'];
-			      unset($id_sewa1);
+			      $id_sewa1= $_GET['id_sewa'];
+						$kd_brg = $_GET['kd_barang'];
+			      mysqli_query($db, "DELETE FROM tmp_detsewa WHERE kd_barang='$kd_brg' AND id_sewa='$id_sewa1'");
 
-			      echo "<script>alert('Data Berhasil Dihapus')</script>";
-			      echo "<script>window.location='index.php'</script>";
+			      echo "<script>window.location='index.php?page=listpemesanan'</script>";
 			    }
 			  }
 

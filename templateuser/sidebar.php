@@ -4,8 +4,8 @@
   if (isset($_SESSION['ss_sewa']))
   {
     $id_s = $_SESSION['ss_sewa'];
-    $query1  = mysqli_query($db,"SELECT SUM(a.jumlah) AS jumlah, SUM(a.jumlah*b.harga) as total FROM tmp_detsewa a JOIN barang b ON a.kd_barang = b.kd_barang WHERE a.id_sewa='$id_s'");
-
+    $query1  = mysqli_query($db,"SELECT SUM(a.jumlah) AS jumlah, SUM(a.jumlah*b.harga*a.lama) as total FROM tmp_detsewa a JOIN barang b ON a.kd_barang = b.kd_barang WHERE a.id_sewa='$id_s'");
+    $jumlah = mysqli_num_rows($query1);
     $pecah1 = mysqli_fetch_assoc($query1);
   }
 
@@ -15,11 +15,15 @@
 <div id="sidebar" class="span3">
   <?php if(isset($_SESSION['id_user_member'])){ ?>
   <div class="well well-small">
+    <?php if(isset($_SESSION['ss_sewa'])){
+      if ($pecah1['jumlah']>0) {
 
+     ?>
     <a id="myCart" href="index.php?page=listpemesanan">
-      <img src="asetuser/themes/images/ico-cart.png" alt="cart"> <?php if(isset($_SESSION['ss_sewa'])){ echo $pecah1['jumlah'];}else{ echo "0";} ?> <span class="badge badge-warning pull-right"><?php if(isset($_SESSION['ss_sewa'])){ echo rupiah($pecah1['total']);}
+      <img src="asetuser/themes/images/ico-cart.png" alt="cart"> <?php if(isset($_SESSION['ss_sewa'])){ echo  $pecah1['jumlah'];}else{ echo "0";} ?> <span class="badge badge-warning pull-right"><?php if(isset($_SESSION['ss_sewa'])){ echo rupiah($pecah1['total']);}
       else{ echo "0";} ?> </span>
     </a>
+  <?php }}?>
 
   </div>
 
@@ -38,7 +42,7 @@
      ?>
 
 
-    <li><a href="index.php?page=kategori&kd_kategori=<?php echo $pecah['kd_kategori']; ?>"><?php echo $pecah['nama_kategori']; ?></a></li>
+    <li><a href="index.php?page=ketersediaan&kd_kategori=<?php echo $pecah['kd_kategori']; ?>"><?php echo $pecah['nama_kategori']; ?></a></li>
 
 
     <?php }} ?>

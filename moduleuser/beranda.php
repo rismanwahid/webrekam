@@ -1,4 +1,3 @@
-
         <div class="span9">
 
           <ul class="breadcrumb">
@@ -29,11 +28,10 @@
                   <hr class="lessspace" />
                     <h5><?php echo $pecah ['nama_barang']; ?></h5>
                     <span>
-                      <p style="text-align:center">Stok: <?php echo $pecah ['stok']; ?></p>
+                      <p style="text-align:center">Ketersediaan Toko: <?php echo $pecah ['stok']; ?></p>
                     </span>
                     <h4 style="text-align:center">
-                        <?php if(isset($_SESSION['id_user_member'])){ ?>
-                      <a class="btn" href="index.php?page=pemesanan&kd_barang=<?php echo $pecah ['kd_barang']; ?>">Sewa</a>
+                        <?php if(isset($_SESSION['id_user_member'])){ ?>                      
 
                       <?php
                       }else {

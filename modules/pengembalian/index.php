@@ -3,7 +3,7 @@
     <i class="fa fa-folder-o"></i> Pengembalian
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Beranda</a></li>
+    <li><a href="admin.php?page=dashboard"><i class="fa fa-dashboard"></i> Beranda</a></li>
     <li class="active">Pengembalian</li>
   </ol>
 </section>
@@ -13,7 +13,7 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">Data Pengembalian</h3>
+          <h3 class="box-title">Data Transaksi Pengembalian</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -29,7 +29,7 @@
             <tbody>
               <?php
                 $no     = 1;
-                $query  = mysqli_query($db,"SELECT  *  FROM sewa WHERE keterangan='barang_diambil'");
+                $query  = mysqli_query($db,"SELECT  *  FROM sewa WHERE keterangan='barang_diambil' OR keterangan='barang telah dikembalikan'  ORDER BY keterangan ASC");
                 $hitung = mysqli_num_rows($query);
                 if ($hitung>0) {
                   while ($pecah = mysqli_fetch_assoc($query)) {
@@ -38,7 +38,7 @@
             <tr>
               <td><?php echo $no; ?></td>
               <td><?php echo $pecah ['id_sewa']; ?></td>
-              <td><?php echo $pecah ['tgl_kembali']; ?></td>
+              <td><?php echo date('d-m-Y H:i:s',strtotime($pecah['tgl_kembali'])); ?></td>
               <td>
                 <?php
                 $query1  = mysqli_query($db,"SELECT * FROM pengembalian WHERE id_sewa='".$pecah['id_sewa']."'");

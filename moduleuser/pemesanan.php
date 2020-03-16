@@ -78,8 +78,9 @@
   {
     $id_sewa  = $_POST['id_sewa'];
     $jumlah  = $_POST['jumlah'];
+    $lama  = $_SESSION['sslamasewa'];
 
-    mysqli_query($db, "INSERT INTO tmp_detsewa(id_sewa,kd_barang,jumlah) VALUES ('$id_sewa','$barang_id','$jumlah')");
+    mysqli_query($db, "INSERT INTO tmp_detsewa(id_sewa,kd_barang,jumlah,lama) VALUES ('$id_sewa','$barang_id','$jumlah','$lama')");
 
     echo "<script>alert('Data Berhasil Tersimpan')</script>";
     echo "<script>window.location='index.php'</script>";

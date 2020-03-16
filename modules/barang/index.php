@@ -16,7 +16,7 @@
     <i class="fa fa-folder-o"></i> Barang
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Beranda</a></li>
+    <li><a href="admin.php?page=dashboard"><i class="fa fa-dashboard"></i> Beranda</a></li>
     <li class="active">Barang</li>
   </ol>
 </section>
@@ -49,7 +49,7 @@
             <tbody>
               <?php
                 $no     = 1;
-                $query  = mysqli_query($db,"SELECT barang.*, kategori.nama_kategori FROM barang JOIN kategori ON barang.kd_kategori=kategori.kd_kategori");
+                $query  = mysqli_query($db,"SELECT barang.*, kategori.nama_kategori FROM kategori JOIN barang ON barang.kd_kategori=kategori.kd_kategori ");
                 $hitung = mysqli_num_rows($query);
                 if ($hitung>0) {
                   while ($pecah = mysqli_fetch_assoc($query)) {
@@ -58,11 +58,11 @@
             <tr>
               <td><?php echo $no; ?></td>
               <td><?php echo $pecah ['kd_barang']; ?></td>
-              <td><?php echo $pecah ['nama_kategori']; ?></td>
-              <td><?php echo $pecah ['nama_barang']; ?></td>
+              <td><?php echo $pecah ['nama_kategori'];?></td>
+              <td><?php echo $pecah ['nama_barang'];?></td>
               <td align="center">
                 <img src="images/barang/<?php echo $pecah ['gambar']; ?> " width="70px"></td>
-              <td><?php echo $pecah['harga'] ?></td>
+              <td><?php echo rupiah($pecah['harga']); ?></td>
               <td><?php echo $pecah ['stok']; ?></td>
               <td><?php echo $pecah ['status']; ?></td>
               <td>

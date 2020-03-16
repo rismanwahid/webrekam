@@ -55,25 +55,9 @@
         </span>
       </a>
       <ul class="treeview-menu">
-        <li><a href="#"><i class="fa fa-circle-o"></i> Laporan Penyewaan</a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-circle-o"></i> Grafik Penyewaan Barang</a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-circle-o"></i> Level Two
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+        <li><a href="admin.php?page=laporan"><i class="fa fa-circle-o"></i> Laporan Penyewaan</a></li>
+        <li><a href="admin.php?page=lappengembalian"><i class="fa fa-circle-o"></i> Laporan Pengembalian</a></li>
+        <li><a href="admin.php?page=laporanbarang"><i class="fa fa-circle-o"></i> Grafik Penyewaan Barang</a></li>
       </ul>
     </li>
 
@@ -84,35 +68,19 @@
         // code...
 
      ?>
-    <li class="treeview">
-      <a href="#">
-        <i class="fa fa-book"></i> <span>Laporan</span>
-        <span class="pull-right-container">
-          <i class="fa fa-angle-left pull-right"></i>
-        </span>
-      </a>
-      <ul class="treeview-menu">
-        <li><a href="#"><i class="fa fa-circle-o"></i> Laporan Penyewaan</a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-circle-o"></i> Grafik Penyewaan Barang</a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-circle-o"></i> Level Two
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-      </ul>
-    </li>
+     <li class="treeview">
+       <a href="#">
+         <i class="fa fa-book"></i> <span>Laporan</span>
+         <span class="pull-right-container">
+           <i class="fa fa-angle-left pull-right"></i>
+         </span>
+       </a>
+       <ul class="treeview-menu">
+         <li><a href="admin.php?page=laporan"><i class="fa fa-circle-o"></i> Laporan Penyewaan</a></li>
+         <li><a href="admin.php?page=lappengembalian"><i class="fa fa-circle-o"></i> Laporan Pengembalian</a></li>
+         <li><a href="admin.php?page=laporanbarang"><i class="fa fa-circle-o"></i> Grafik Penyewaan Barang</a></li>
+       </ul>
+     </li>
     <?php } ?>
   </ul>
 </section>

@@ -47,6 +47,8 @@
 	<link href="asetuser/themes/css/font-awesome.css" rel="stylesheet" type="text/css">
 <!-- Google-code-prettify -->
 	<link href="asetuser/themes/js/google-code-prettify/prettify.css" rel="stylesheet"/>
+<!-- Google-code-prettify -->
+
 <!-- fav and touch icons -->
     <link rel="shortcut icon" href="asetuser/themes/images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="asetuser/themes/images/ico/apple-touch-icon-144-precomposed.png">
@@ -81,7 +83,6 @@
 
 
 
-		<?php include 'templateuser/search.php' ?>
 
 
     <ul id="topMenu" class="nav pull-right">
@@ -235,6 +236,9 @@
       elseif ($_GET['page'] == 'details') {
       include 'moduleuser/detail_sewa.php';
       }
+      elseif ($_GET['page'] == 'ketersediaan') {
+      include 'moduleuser/cekketersediaan.php';
+      }
 
       }
       else
@@ -290,7 +294,9 @@
 				<a href="#"><img width="60" height="60" src="asetuser/themes/images/youtube.png" title="youtube" alt="youtube"/></a>
 			 </div> -->
 		 <!-- </div> -->
-		<p class="pull-right">&copy; Rekam Indonesia 2019</p>
+		<strong>
+      <p class="pull-right"><?php echo "Copyright © " . (int)date('Y') . " Rekam Indonesia"; ?></p>
+    </strong>
 	</div><!-- Container End -->
 	</div>
 <!-- Placed at the end of the document so the pages load faster ============================================= -->
@@ -315,7 +321,7 @@
 	<div class="themeName">Bootswatch Skins (11)</div>
 	<div class="images style">
 		<a href="asetuser/themes/css/#" name="amelia" title="Amelia"><img src="asetuser/themes/switch/images/clr/amelia.png" alt="bootstrap business templates"></a>
-		<a href="asetuser/themes/css/#" name="spruce" title="Spruce"><img src="asetuser/themes/switch/images/clr/spruce.png" alt="bootstrap business templates" ></a>
+		<a href="asetuser/themes/css/#" name="spruce" title="Spruce"><  src="asetuser/themes/switch/images/clr/spruce.png" alt="bootstrap business templates" ></a>
 		<a href="asetuser/themes/css/#" name="superhero" title="Superhero"><img src="asetuser/themes/switch/images/clr/superhero.png" alt="bootstrap business templates"></a>
 		<a href="asetuser/themes/css/#" name="cyborg"><img src="asetuser/themes/switch/images/clr/cyborg.png" alt="bootstrap business templates"></a>
 		<a href="asetuser/themes/css/#" name="cerulean"><img src="asetuser/themes/switch/images/clr/cerulean.png" alt="bootstrap business templates"></a>
@@ -372,6 +378,17 @@
 
 <script type="text/javascript">
 
+  $(document).on("click","#aksigambar",function(){
+    var resi   = $(this).data('gambar');
+    $("#gambarresi").html('<img src="images/resi-pembayaran/'+resi+'" style="width:100%;">');
+
+
+  });
+
+</script>
+
+<!-- <script type="text/javascript">
+
   $(document).on("click","#aksi_detail",function(){
     var data_detail   = $(this).data('detail');
     var pinjam  = $(this).data('pinjam');
@@ -406,4 +423,4 @@
     // $("#updatesewa").find("input[name=id_sewa1]").val(idpen);
 
 
-</script>
+</script> -->
